@@ -79,18 +79,26 @@ function reduce(array, callback, initialValue) {
 // Challenge 7
 //Construct a function intersection that takes in an array of arrays, compares the inner arrays, and returns a new array with elements found in all of them.
 // BONUS: Use reduce!
-//without reduce
-function intersection(arrays) {
-    const result = []
-    for(let i = 0; i < arrays.length; i++){
-        for(let j = 0; j < arrays[i].length; j++){
-            if()
-        }
 
+//without reduce, using a for loop
+function intersection(arrays) {
+    let acc = arrays[0]
+    
+    for(let i = 1; i < arrays.length; i++){
+        const current = arrays[i]
+        let newAcc = []
+        acc.forEach(el => {
+            if(current.includes(el)) newAcc.push(el)
+        })
+        acc = newAcc
     }
+   return acc
 }
 
-console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
+//without reduce, using a while loop
+
+
+//console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
 
 
