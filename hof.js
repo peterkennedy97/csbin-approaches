@@ -62,14 +62,14 @@ function reduce(array, callback, initialValue) {
         acc = array[0];
         startingIndex = 1;
     } else {
-        acc = initialValue
+        acc = initialValue;
     }
 
     for(let i = startingIndex; i < array.length; i++) {
-        acc = callback(acc, array[i])
+        acc = callback(acc, array[i]);
     }
 
-    return acc
+    return acc;
 }
 
 // const nums = [4, 1, 3];
@@ -82,21 +82,41 @@ function reduce(array, callback, initialValue) {
 
 //without reduce, using a for loop
 function intersection(arrays) {
-    let acc = arrays[0]
+    let acc = arrays[0];
     
     for(let i = 1; i < arrays.length; i++){
-        const current = arrays[i]
-        let newAcc = []
+        const current = arrays[i];
+        let newAcc = [];
         acc.forEach(el => {
-            if(current.includes(el)) newAcc.push(el)
+            if(current.includes(el)) newAcc.push(el);
         })
-        acc = newAcc
+        acc = newAcc;
     }
-   return acc
+   return acc;
 }
 
 //without reduce, using a while loop
+function intersection(arrays){
+    let acc = arrays.pop();
 
+    while(arrays.length){
+        let current = arrays.pop();
+        let newArray = [];
+
+        current.forEach(el => {
+            if(acc.includes(el)) newArray.push(el);
+        });
+        acc = newArray;
+    }
+    return acc;
+}
+
+//with reduce
+function intersection(arrays){
+    return arrays.reduce((acc, curr) => {
+        return acc.filter(el => curr.includes(el));
+    });
+}
 
 //console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
